@@ -1,5 +1,5 @@
 turtlebot-melodic/turtlebot_capabilities
-/home/baiyu/Desktop/mybot_ws/devel/.private/turtlebot_capabilities/cmake.lock /home/baiyu/Desktop/mybot_ws/devel/./cmake.lock
-/home/baiyu/Desktop/mybot_ws/devel/.private/turtlebot_capabilities/share/turtlebot_capabilities/cmake/turtlebot_capabilitiesConfig-version.cmake /home/baiyu/Desktop/mybot_ws/devel/share/turtlebot_capabilities/cmake/turtlebot_capabilitiesConfig-version.cmake
-/home/baiyu/Desktop/mybot_ws/devel/.private/turtlebot_capabilities/share/turtlebot_capabilities/cmake/turtlebot_capabilitiesConfig.cmake /home/baiyu/Desktop/mybot_ws/devel/share/turtlebot_capabilities/cmake/turtlebot_capabilitiesConfig.cmake
-/home/baiyu/Desktop/mybot_ws/devel/.private/turtlebot_capabilities/lib/pkgconfig/turtlebot_capabilities.pc /home/baiyu/Desktop/mybot_ws/devel/lib/pkgconfig/turtlebot_capabilities.pc
+/home/baiyu/Desktop/diff_robot/mybot_ws/devel/.private/turtlebot_capabilities/cmake.lock /home/baiyu/Desktop/diff_robot/mybot_ws/devel/./cmake.lock
+/home/baiyu/Desktop/diff_robot/mybot_ws/devel/.private/turtlebot_capabilities/share/turtlebot_capabilities/cmake/turtlebot_capabilitiesConfig-version.cmake /home/baiyu/Desktop/diff_robot/mybot_ws/devel/share/turtlebot_capabilities/cmake/turtlebot_capabilitiesConfig-version.cmake
+/home/baiyu/Desktop/diff_robot/mybot_ws/devel/.private/turtlebot_capabilities/share/turtlebot_capabilities/cmake/turtlebot_capabilitiesConfig.cmake /home/baiyu/Desktop/diff_robot/mybot_ws/devel/share/turtlebot_capabilities/cmake/turtlebot_capabilitiesConfig.cmake
+/home/baiyu/Desktop/diff_robot/mybot_ws/devel/.private/turtlebot_capabilities/lib/pkgconfig/turtlebot_capabilities.pc /home/baiyu/Desktop/diff_robot/mybot_ws/devel/lib/pkgconfig/turtlebot_capabilities.pc

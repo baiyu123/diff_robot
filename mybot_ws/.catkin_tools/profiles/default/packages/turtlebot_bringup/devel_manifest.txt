@@ -1,6 +1,6 @@
 turtlebot-melodic/turtlebot_bringup
-/home/baiyu/Desktop/mybot_ws/devel/.private/turtlebot_bringup/cmake.lock /home/baiyu/Desktop/mybot_ws/devel/./cmake.lock
-/home/baiyu/Desktop/mybot_ws/devel/.private/turtlebot_bringup/share/turtlebot_bringup/cmake/turtlebot_bringupConfig.cmake /home/baiyu/Desktop/mybot_ws/devel/share/turtlebot_bringup/cmake/turtlebot_bringupConfig.cmake
-/home/baiyu/Desktop/mybot_ws/devel/.private/turtlebot_bringup/share/turtlebot_bringup/cmake/turtlebot_bringupConfig-version.cmake /home/baiyu/Desktop/mybot_ws/devel/share/turtlebot_bringup/cmake/turtlebot_bringupConfig-version.cmake
-/home/baiyu/Desktop/mybot_ws/devel/.private/turtlebot_bringup/lib/pkgconfig/turtlebot_bringup.pc /home/baiyu/Desktop/mybot_ws/devel/lib/pkgconfig/turtlebot_bringup.pc
-/home/baiyu/Desktop/mybot_ws/devel/.private/turtlebot_bringup/etc/catkin/profile.d/25.turtlebot.sh /home/baiyu/Desktop/mybot_ws/devel/etc/catkin/profile.d/25.turtlebot.sh
+/home/baiyu/Desktop/diff_robot/mybot_ws/devel/.private/turtlebot_bringup/cmake.lock /home/baiyu/Desktop/diff_robot/mybot_ws/devel/./cmake.lock
+/home/baiyu/Desktop/diff_robot/mybot_ws/devel/.private/turtlebot_bringup/share/turtlebot_bringup/cmake/turtlebot_bringupConfig.cmake /home/baiyu/Desktop/diff_robot/mybot_ws/devel/share/turtlebot_bringup/cmake/turtlebot_bringupConfig.cmake
+/home/baiyu/Desktop/diff_robot/mybot_ws/devel/.private/turtlebot_bringup/share/turtlebot_bringup/cmake/turtlebot_bringupConfig-version.cmake /home/baiyu/Desktop/diff_robot/mybot_ws/devel/share/turtlebot_bringup/cmake/turtlebot_bringupConfig-version.cmake
+/home/baiyu/Desktop/diff_robot/mybot_ws/devel/.private/turtlebot_bringup/lib/pkgconfig/turtlebot_bringup.pc /home/baiyu/Desktop/diff_robot/mybot_ws/devel/lib/pkgconfig/turtlebot_bringup.pc
+/home/baiyu/Desktop/diff_robot/mybot_ws/devel/.private/turtlebot_bringup/etc/catkin/profile.d/25.turtlebot.sh /home/baiyu/Desktop/diff_robot/mybot_ws/devel/etc/catkin/profile.d/25.turtlebot.sh

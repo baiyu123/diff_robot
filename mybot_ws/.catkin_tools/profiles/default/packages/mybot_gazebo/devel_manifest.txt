@@ -1,5 +1,5 @@
 mybot_gazebo
-/home/baiyu/Desktop/mybot_ws/devel/.private/mybot_gazebo/cmake.lock /home/baiyu/Desktop/mybot_ws/devel/./cmake.lock
-/home/baiyu/Desktop/mybot_ws/devel/.private/mybot_gazebo/share/mybot_gazebo/cmake/mybot_gazeboConfig-version.cmake /home/baiyu/Desktop/mybot_ws/devel/share/mybot_gazebo/cmake/mybot_gazeboConfig-version.cmake
-/home/baiyu/Desktop/mybot_ws/devel/.private/mybot_gazebo/share/mybot_gazebo/cmake/mybot_gazeboConfig.cmake /home/baiyu/Desktop/mybot_ws/devel/share/mybot_gazebo/cmake/mybot_gazeboConfig.cmake
-/home/baiyu/Desktop/mybot_ws/devel/.private/mybot_gazebo/lib/pkgconfig/mybot_gazebo.pc /home/baiyu/Desktop/mybot_ws/devel/lib/pkgconfig/mybot_gazebo.pc
+/home/baiyu/Desktop/diff_robot/mybot_ws/devel/.private/mybot_gazebo/cmake.lock /home/baiyu/Desktop/diff_robot/mybot_ws/devel/./cmake.lock
+/home/baiyu/Desktop/diff_robot/mybot_ws/devel/.private/mybot_gazebo/share/mybot_gazebo/cmake/mybot_gazeboConfig-version.cmake /home/baiyu/Desktop/diff_robot/mybot_ws/devel/share/mybot_gazebo/cmake/mybot_gazeboConfig-version.cmake
+/home/baiyu/Desktop/diff_robot/mybot_ws/devel/.private/mybot_gazebo/share/mybot_gazebo/cmake/mybot_gazeboConfig.cmake /home/baiyu/Desktop/diff_robot/mybot_ws/devel/share/mybot_gazebo/cmake/mybot_gazeboConfig.cmake
+/home/baiyu/Desktop/diff_robot/mybot_ws/devel/.private/mybot_gazebo/lib/pkgconfig/mybot_gazebo.pc /home/baiyu/Desktop/diff_robot/mybot_ws/devel/lib/pkgconfig/mybot_gazebo.pc

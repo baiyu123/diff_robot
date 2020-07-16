@@ -9,20 +9,32 @@ import math
 import copy
 import numpy as np
 import pickle
+import tf
+import cProfile
+import re
+
 
 goal = PoseStamped()
-tf = TFMessage()
+tf_msg = TFMessage()
 curr_robot_transform = Transform()
 distance_map = []
 input_map_scale = 0.01
 input_map_width = 4000
 input_map_height = 4000
-grid_scale = 0.1
+# scale for dist map
+grid_scale = 0.02
 grid_width = input_map_width*input_map_scale/grid_scale
 grid_height = input_map_height*input_map_scale/grid_scale
 drawing_map = True
 # publisher
 pub = None
+dist_map_pub = None
+# repulsive gradient
+cut_off_dist = 0.6
+grad_scale = 1.5
+# attractive gradient
+max_grad_dist = 1.0
+att_grad_scale = 1.0
 
 
 def goal_callback(data):
@@ -33,12 +45,10 @@ def goal_callback(data):
 
 def map_callback(data):
     # rospy.loginfo(rospy.get_caller_id() + "map data: %s", data.data)
-    # brush_fire(data)
-
-
+    bush_fire(data)
     global distance_map
     global drawing_map
-    distance_map = read_map_from_file_pickle()
+    # distance_map = read_map_from_file_pickle()
     drawing_map = False
     pass
 
@@ -54,47 +64,24 @@ def get_quaternion(v1, v2):
     q.w = np.cos(theta/2)
     return q
 
-def tf_callback(data):
-    global tf 
-    tf = data
-    for transformStamped in tf.transforms:
-        child_id = transformStamped.child_frame_id
-        current_id = transformStamped.header.frame_id
-        transform = transformStamped.transform
-        translation = transform.translation
-        rotation = transform.rotation
-        if current_id == "odom" and child_id == "chassis":
-            # print("Current:" + current_id + " child:" + child_id)
-            # print("X:" + str(translation.x) + " Y:" + str(translation.y) + " Z:" + str(translation.z))
-            # print(rotation)
-            global curr_robot_transform
-            curr_robot_transform = transform
-            # current_loc = Vector3()
-            # current_loc.x = translation.x
-            # current_loc.y = translation.y
-            # current_loc.z = 0
-            # goal_loc = Vector3()
-            # goal_loc.x = goal.pose.position.x
-            # goal_loc.y = goal.pose.position.y
-            # goal_loc.z = 0
-            if not drawing_map:
-                grad_vec2 = get_gradient( curr_robot_transform.translation, goal.pose.position)
-                grad_vec3 = np.array([grad_vec2[0], grad_vec2[1], 0])
-                q = get_quaternion(np.array([1,0,0]), grad_vec3)
-                # print(q)
 
-                grad_pose = PoseStamped()
-                grad_pose.header.frame_id = "odom"
-                grad_pose.pose.position.x = translation.x
-                grad_pose.pose.position.y = translation.y  
-                grad_pose.pose.position.z = translation.z
-                grad_pose.pose.orientation = q
-                pub.publish(grad_pose)
-                # print("grad")
-                # print(grad_vec3)
-            # grad = get_attraction_grad(current_loc, goal_loc)
-            # print(vec3_magnitude(grad))
-    pass
+def update_tf(data):
+    global tf_msg 
+    tf_msg = data
+    if not drawing_map:
+        grad_vec2 = get_gradient( tf_msg, goal.pose.position)
+        grad_vec3 = np.array([grad_vec2[0], grad_vec2[1], 0])
+        q = get_quaternion(np.array([1,0,0]), grad_vec3)
+        # print(q)
+
+        grad_pose = PoseStamped()
+        grad_pose.header.frame_id = "odom"
+        grad_pose.pose.position.x = tf_msg[0]
+        grad_pose.pose.position.y = tf_msg[1]  
+        grad_pose.pose.position.z = tf_msg[2]
+        grad_pose.pose.orientation = q
+        pub.publish(grad_pose)
+        # publish_distance_map(distance_map)
 
 
 
@@ -127,11 +114,13 @@ def write_map_to_file_pickle(map):
     print("Done")
 
 def read_map_from_file_pickle():
+    print('read pickel')
     with open("map_pickle.txt", "rb") as fp:   # Unpickling
         map = pickle.load(fp)
+    print('done')
     return map
 
-def brush_fire(data):
+def bush_fire(data):
     print("Start bush fire")
     global drawing_map
     drawing_map = True
@@ -185,21 +174,21 @@ def brush_fire(data):
 
     print("done")
     drawing_map = False
-    write_map_to_file_pickle(distance_map)
-    write_map_to_file(distance_map)
-    draw_graph(distance_map)
+    # write_map_to_file_pickle(distance_map)
+    # write_map_to_file(distance_map)
+    # draw_graph(distance_map)
 
 
 # the gradient here is the opposite direction of traditional gradient
 def get_attraction_grad(curr_loc, goal_loc):
-    max_grad_dist = 1.0
-    grad_scale = 1.0
+    global max_grad_dist
+    global att_grad_scale
     dist_vec = goal_loc - curr_loc
     dist_to_goal = np.linalg.norm(dist_vec)
     if dist_to_goal < max_grad_dist:
-        grad = dist_vec*grad_scale
+        grad = dist_vec*att_grad_scale
     else:
-        grad = dist_vec * (max_grad_dist*grad_scale/dist_to_goal)
+        grad = dist_vec * (max_grad_dist*att_grad_scale/dist_to_goal)
     return grad
     
 # given location in real world, tranlate into grid index
@@ -211,8 +200,9 @@ def world_to_grid(location):
 
 def get_distance_to_obstacle(curr_loc):
     curr_grid_loc = world_to_grid(curr_loc)
-    x_grid = int(curr_grid_loc[0])
-    y_grid = int(curr_grid_loc[1])
+    # x and y are flip in the map in comparison to robot x y
+    x_grid = int(curr_grid_loc[1])
+    y_grid = int(curr_grid_loc[0])
     distance = distance_map[x_grid][y_grid]*grid_scale
     return distance
 
@@ -240,8 +230,8 @@ def get_repulsion_grad_direction(curr_loc):
     
 
 def get_repulsion_grad(curr_loc):
-    cut_off_dist = 0.5
-    grad_scale = 1
+    global cut_off_dist
+    global grad_scale
     # offset to map center
 
     dist_to_obstacle = get_distance_to_obstacle(curr_loc)
@@ -249,38 +239,93 @@ def get_repulsion_grad(curr_loc):
     # find the gradient direction
     grad = get_repulsion_grad_direction(curr_loc)
     grad *= grad_mag
+    # print("x: " + str(curr_loc[0])+" y: "+str(curr_loc[1]))
+    # print("dist:" + str(dist_to_obstacle))
+    # print("grad mag: " + str(grad_mag))
     return grad
 
 def get_gradient(curr_loc_vec3, goal_vec3):
-    curr_loc = np.array([curr_loc_vec3.x, curr_loc_vec3.y])
+    curr_loc = np.array([curr_loc_vec3[0], curr_loc_vec3[1]])
     goal = np.array([goal_vec3.x, goal_vec3.y])
     attract_vec = get_attraction_grad(curr_loc, goal)
     repulsion_vec = get_repulsion_grad(curr_loc)
     final_grad = attract_vec + repulsion_vec
-    return repulsion_vec
+    return final_grad
+
+def flatten_list(list):
+    flat_list = []
+    for sublist in list:
+        for item in sublist:
+            flat_list.append(item)
+    ret_val = np.array(flat_list, dtype='int8')
+    return ret_val
+
+def flip_x(map):
+    map.reverse()
+
+def flip_y(map):
+    for row in range(len(map)):
+        map[row].reverse()
+        
+
+# publish dist map for debugging
+def publish_distance_map(map):
+    map_copy = copy.deepcopy(map)
+    # flip_x(map_copy)
+    # flip_y(map_copy)
+    for row in range(len(map_copy)):
+        for col in range(len(map_copy[row])):
+            if map_copy[row][col] == 1:
+                map_copy[row][col] = 100
+            if map_copy[row][col] < 0:
+                map_copy[row][col] = 0
+    occ_map = OccupancyGrid()
+    occ_map.header.frame_id = 'odom'
+    occ_map.info.resolution = grid_scale
+    occ_map.info.width = int(input_map_width/int(grid_scale/input_map_scale))
+    occ_map.info.height = int(input_map_height/int(grid_scale/input_map_scale))
+    occ_map.info.origin.position.x = -20
+    occ_map.info.origin.position.y = -20
+    occ_map.data = flatten_list(map_copy)
+    dist_map_pub.publish(occ_map)
 
 
 def draw_graph(map):
+    temp_map = copy.deepcopy(map)
+    for row in range(len(temp_map)):
+        for col in range(len(temp_map[row])):
+            if temp_map[row][col]  > 25:
+                temp_map[row][col] = 25
     plt.figure()
-    plt.imshow(map, cmap='jet')
+    plt.imshow(temp_map, cmap='jet')
     plt.show()
 
-
+def transform_listener():
+    tf_lisener = tf.TransformListener()
+    while not rospy.is_shutdown():
+        try:
+            (trans,rot) = tf_lisener.lookupTransform('odom', 'chassis', rospy.Time(0))
+            update_tf(trans)
+        except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException):
+            continue
             
 
 def listener():
     rospy.Subscriber("move_base_simple/goal", PoseStamped, goal_callback)
     rospy.Subscriber("map", OccupancyGrid, map_callback)
-    rospy.Subscriber("/tf", TFMessage, tf_callback)
+    # rospy.Subscriber("/tf", TFMessage, tf_callback)
+    transform_listener()
     rospy.spin()
 
 def talker():
     global pub
     pub = rospy.Publisher('gradient', PoseStamped , queue_size=10)
-    
+    global dist_map_pub
+    dist_map_pub = rospy.Publisher('dist_map', OccupancyGrid, queue_size=10)
 
 
 if __name__=='__main__':
+    print("starting motion planner")
     rospy.init_node('motion_planner', anonymous=False)
     talker()
     listener()

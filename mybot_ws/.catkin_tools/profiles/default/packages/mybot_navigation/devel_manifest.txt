@@ -1,5 +1,5 @@
 mybot_navigation
-/home/baiyu/Desktop/mybot_ws/devel/.private/mybot_navigation/cmake.lock /home/baiyu/Desktop/mybot_ws/devel/./cmake.lock
-/home/baiyu/Desktop/mybot_ws/devel/.private/mybot_navigation/share/mybot_navigation/cmake/mybot_navigationConfig.cmake /home/baiyu/Desktop/mybot_ws/devel/share/mybot_navigation/cmake/mybot_navigationConfig.cmake
-/home/baiyu/Desktop/mybot_ws/devel/.private/mybot_navigation/share/mybot_navigation/cmake/mybot_navigationConfig-version.cmake /home/baiyu/Desktop/mybot_ws/devel/share/mybot_navigation/cmake/mybot_navigationConfig-version.cmake
-/home/baiyu/Desktop/mybot_ws/devel/.private/mybot_navigation/lib/pkgconfig/mybot_navigation.pc /home/baiyu/Desktop/mybot_ws/devel/lib/pkgconfig/mybot_navigation.pc
+/home/baiyu/Desktop/diff_robot/mybot_ws/devel/.private/mybot_navigation/cmake.lock /home/baiyu/Desktop/diff_robot/mybot_ws/devel/./cmake.lock
+/home/baiyu/Desktop/diff_robot/mybot_ws/devel/.private/mybot_navigation/share/mybot_navigation/cmake/mybot_navigationConfig.cmake /home/baiyu/Desktop/diff_robot/mybot_ws/devel/share/mybot_navigation/cmake/mybot_navigationConfig.cmake
+/home/baiyu/Desktop/diff_robot/mybot_ws/devel/.private/mybot_navigation/share/mybot_navigation/cmake/mybot_navigationConfig-version.cmake /home/baiyu/Desktop/diff_robot/mybot_ws/devel/share/mybot_navigation/cmake/mybot_navigationConfig-version.cmake
+/home/baiyu/Desktop/diff_robot/mybot_ws/devel/.private/mybot_navigation/lib/pkgconfig/mybot_navigation.pc /home/baiyu/Desktop/diff_robot/mybot_ws/devel/lib/pkgconfig/mybot_navigation.pc

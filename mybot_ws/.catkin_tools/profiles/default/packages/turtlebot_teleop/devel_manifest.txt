@@ -1,6 +1,6 @@
 turtlebot-melodic/turtlebot_teleop
-/home/baiyu/Desktop/mybot_ws/devel/.private/turtlebot_teleop/cmake.lock /home/baiyu/Desktop/mybot_ws/devel/./cmake.lock
-/home/baiyu/Desktop/mybot_ws/devel/.private/turtlebot_teleop/share/turtlebot_teleop/cmake/turtlebot_teleopConfig-version.cmake /home/baiyu/Desktop/mybot_ws/devel/share/turtlebot_teleop/cmake/turtlebot_teleopConfig-version.cmake
-/home/baiyu/Desktop/mybot_ws/devel/.private/turtlebot_teleop/share/turtlebot_teleop/cmake/turtlebot_teleopConfig.cmake /home/baiyu/Desktop/mybot_ws/devel/share/turtlebot_teleop/cmake/turtlebot_teleopConfig.cmake
-/home/baiyu/Desktop/mybot_ws/devel/.private/turtlebot_teleop/lib/turtlebot_teleop/turtlebot_teleop_joy /home/baiyu/Desktop/mybot_ws/devel/lib/turtlebot_teleop/turtlebot_teleop_joy
-/home/baiyu/Desktop/mybot_ws/devel/.private/turtlebot_teleop/lib/pkgconfig/turtlebot_teleop.pc /home/baiyu/Desktop/mybot_ws/devel/lib/pkgconfig/turtlebot_teleop.pc
+/home/baiyu/Desktop/diff_robot/mybot_ws/devel/.private/turtlebot_teleop/cmake.lock /home/baiyu/Desktop/diff_robot/mybot_ws/devel/./cmake.lock
+/home/baiyu/Desktop/diff_robot/mybot_ws/devel/.private/turtlebot_teleop/share/turtlebot_teleop/cmake/turtlebot_teleopConfig-version.cmake /home/baiyu/Desktop/diff_robot/mybot_ws/devel/share/turtlebot_teleop/cmake/turtlebot_teleopConfig-version.cmake
+/home/baiyu/Desktop/diff_robot/mybot_ws/devel/.private/turtlebot_teleop/share/turtlebot_teleop/cmake/turtlebot_teleopConfig.cmake /home/baiyu/Desktop/diff_robot/mybot_ws/devel/share/turtlebot_teleop/cmake/turtlebot_teleopConfig.cmake
+/home/baiyu/Desktop/diff_robot/mybot_ws/devel/.private/turtlebot_teleop/lib/turtlebot_teleop/turtlebot_teleop_joy /home/baiyu/Desktop/diff_robot/mybot_ws/devel/lib/turtlebot_teleop/turtlebot_teleop_joy
+/home/baiyu/Desktop/diff_robot/mybot_ws/devel/.private/turtlebot_teleop/lib/pkgconfig/turtlebot_teleop.pc /home/baiyu/Desktop/diff_robot/mybot_ws/devel/lib/pkgconfig/turtlebot_teleop.pc
